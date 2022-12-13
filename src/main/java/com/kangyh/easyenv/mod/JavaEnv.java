@@ -1,13 +1,13 @@
 package com.kangyh.easyenv.mod;
 
 import Utils.FileDownloadUtils;
+import Utils.RegistryUtils;
 import com.kangyh.easyenv.BaseEnv;
+import com.kangyh.easyenv.constants.Constants;
 import net.lingala.zip4j.ZipFile;
 
 import java.io.File;
 import java.io.IOException;
-
-import com.jianggujin.registry.JRegistry;
 
 
 public class JavaEnv implements BaseEnv {
@@ -33,7 +33,12 @@ public class JavaEnv implements BaseEnv {
         return src.renameTo(new File(destName));
     }
 
-    public void  setEnv() {
+    public void setEnv() {
+        System.out.println(Constants.CACHE_FILEPATH);
+        RegistryUtils.writeToRegistry(Constants.CACHE_FILEPATH + "\\src\\main\\java\\script\\setJavaEnv.bat",
+                "HKEY_LOCAL_MACHINE\\System\\CurrentControlSet\\Control\\Session Manager\\Environment",
+                "Test",
+                "31");
     }
 
 }
